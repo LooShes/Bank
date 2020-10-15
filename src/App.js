@@ -29,7 +29,13 @@ class App extends Component {
     let balance = this.calculateBalance()
     console.log(balance)
     return(
-      <Transactions data={this.state} />
+      <div>
+        <Transactions data={this.state} />
+        
+        {this.state.dummyData.map(d => {
+            return <Operations data={d} />
+        })}
+      </div>
     )
   }
 }

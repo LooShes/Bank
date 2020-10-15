@@ -5,8 +5,8 @@ class Transactions extends Component {
     render() {
         return (
             <div>
-                {this.props.dummyData.forEach(e => {
-                    return <Transaction data={e} />
+                {this.props.dummyData.forEach(t => {
+                    return <Transaction data={t} />
                 })}
             </div>
         );
