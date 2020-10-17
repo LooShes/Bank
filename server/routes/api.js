@@ -19,6 +19,7 @@ router.post(`/transaction`, async (req, res) => {
 router.delete(`/transaction/:amount`, async (req, res) => {
     const amount = req.params.amount
     await Bank.findOneAndDelete({amount: amount})
+    res.send("deleted")
 })
 
 module.exports = router
