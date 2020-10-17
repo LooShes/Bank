@@ -19,8 +19,9 @@ class App extends Component {
 
   calculateBalance = () => {
     let sum = 0
+    console.log(this.state.data)
     for(let data of this.state.data){
-      sum += data.amount
+      sum += parseInt(data.amount)
     }
     return sum
   }
@@ -32,6 +33,12 @@ class App extends Component {
     this.setState({ data: transactions })
 }
 
+  insertTransaction = transaction => {
+    let transactions = [...this.state.data]
+    transactions.push(transaction)
+    this.setState({ data: transactions })
+  }
+
   render(){
     let balance = this.calculateBalance()
     console.log(balance)
@@ -39,7 +46,7 @@ class App extends Component {
       <Router>
         <div id="container">
           <Transactions data={this.state.data} onClick={this.deleteTransaction} />
-          <Operations data={this.state.data} />
+          <Operations data={this.state.data} onClick={this.insertTransaction} />
       </div>
       </Router>
     )

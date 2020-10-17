@@ -13,15 +13,12 @@ class Operations extends Component {
     }
 
     deposit = () => {
-        console.log(this.props.insertTransaction)
-        
+        this.props.onClick(this.state)
     }
 
-    withdraw = () => {
-        this.setState({amount: -this.state.amount})
-        this.setState({
-            transactions: [...this.state.transactions, this.state.transaction]
-          })
+    withdraw = async() => {
+        await this.setState({amount: -this.state.amount})
+        this.props.onClick(this.state)
     }
 
     handleChange (evt, field) {
@@ -30,7 +27,7 @@ class Operations extends Component {
 
     render() {
         return (
-            <div id="operations">
+            <div id="operations">Operations: <br></br>
                 <input id="amount-input" type="text" value={this.state.amount} onChange={(event)=>this.handleChange(event, "amount")} placeholder="amount"/>
                 <input id="vendor-input" type="text" value={this.state.vendor} onChange={(event)=>this.handleChange(event, "vendor")} placeholder="vendor"/>
                 <input id="category-input" type="text" value={this.state.category} onChange={(event)=>this.handleChange(event, "category")} placeholder="category"/>

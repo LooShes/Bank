@@ -6,7 +6,6 @@ class Transaction extends Component {
     }
 
     render() {
-        //console.log(this.props)
         return(
             <div id="data-container">
                 <p>Amount :{this.props.transaction.amount}</p>
