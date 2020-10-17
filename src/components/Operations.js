@@ -12,13 +12,13 @@ class Operations extends Component {
         this.handleChange = this.handleChange.bind(this)
     }
 
-    deposit = () => {
-        this.props.onClick(this.state)
+    deposit = async () => {
+        await this.props.onClick(this.state)
     }
 
-    withdraw = async() => {
-        await this.setState({amount: -this.state.amount})
-        this.props.onClick(this.state)
+    withdraw = async () => {
+        this.setState({amount: -this.state.amount})
+        await this.props.onClick(this.state)
     }
 
     handleChange (evt, field) {

@@ -10,9 +10,9 @@ router.get(`/transactions`, async (req, res) => {
 })
 
 router.post(`/transaction`, async (req, res) => {
-    let transaction =  await new Bank(req.body)
-    console.log(transaction)
-    transaction.save()
+    let transaction = new Bank(req.body)
+    //console.log(transaction)
+    await transaction.save()
     res.send("done")
 })
 
