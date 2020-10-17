@@ -1,16 +1,21 @@
 import React, { Component } from 'react';
 
 class Transaction extends Component {
-    render() {
-        return (
-            <div>
-                <p>{this.props.amount}</p>
-                <p>{this.props.vendor}</p>
-                <p>{this.props.category}</p>
-                <button id="delete-btn">Delete Transaction</button>
-            </div>
-        )
+    deleteTransaction = () => {
+        this.props.onClick(this.props.transaction.amount)
     }
+
+    render() {
+        //console.log(this.props)
+        return(
+            <div id="data-container">
+                <p>Amount :{this.props.transaction.amount}</p>
+                <p>Vendor: {this.props.transaction.vendor}</p>
+                <p>Category: {this.props.transaction.category}</p>
+                <button id="delete-btn" onClick={this.deleteTransaction}>Delete Transaction</button>
+            </div> 
+            )
+       }
 }
 
 export default Transaction;

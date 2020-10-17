@@ -4,12 +4,10 @@ import Transaction from './Transaction'
 class Transactions extends Component {
     render() {
         return (
-            <div>
-                {this.props.dummyData.forEach(t => {
-                    return <Transaction data={t} />
-                })}
-            </div>
-        );
+            this.props.data.map(t => {
+               return <Transaction transaction={t} onClick={this.props.onClick} />          
+            })
+        )
     }
 }
 
