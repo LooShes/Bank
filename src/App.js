@@ -27,6 +27,10 @@ class App extends Component {
     await axios.post('http://localhost:8000/transaction', this.state.data[this.state.data.length-1])
   }
 
+  deleteFromDB = async() => {
+    
+  }
+
   calculateBalance = () => {
     let sum = 0
     for(let data of this.state.data){

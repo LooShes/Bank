@@ -10,15 +10,17 @@ class Operations extends Component {
             
           }
         this.handleChange = this.handleChange.bind(this)
+        this.handleButtons = this.handleButtons.bind(this)
     }
 
-    deposit = async () => {
-        await this.props.onClick(this.state)
-    }
-
-    withdraw = async () => {
-        this.setState({amount: -this.state.amount})
-        await this.props.onClick(this.state)
+    handleButtons = (evt) => {
+        let amount = this.state.amount
+        console.log(evt.target)
+        let { name } = evt.target.name
+        amount = name === "deposit" ? amount : amount*-1
+        this.setState({ amount }, function(){
+            this.props.onClick(this.state)
+        })
     }
 
     handleChange (evt, field) {
@@ -31,8 +33,8 @@ class Operations extends Component {
                 <input id="amount-input" type="text" value={this.state.amount} onChange={(event)=>this.handleChange(event, "amount")} placeholder="amount"/>
                 <input id="vendor-input" type="text" value={this.state.vendor} onChange={(event)=>this.handleChange(event, "vendor")} placeholder="vendor"/>
                 <input id="category-input" type="text" value={this.state.category} onChange={(event)=>this.handleChange(event, "category")} placeholder="category"/>
-                <button id="deposit-btn" onClick={this.deposit}>Deposit</button>
-                <button id="withdraw-btn" onClick={this.withdraw}>Withdraw</button>
+                <button id="deposit-btn" name="deposit" onClick={this.handleButtons}>Deposit</button>
+                <button id="withdraw-btn" name="withdraw" onClick={this.handleButtons}>Withdraw</button>
             </div>
         )
     }
