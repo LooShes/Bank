@@ -46,7 +46,7 @@ class App extends Component {
 }
 
   insertTransaction = async (transaction) => {
-    let transactions = await [...this.state.data]
+    let transactions = [...this.state.data]
     transactions.push(transaction)
     this.setState({ data: transactions })
     await this.postData()
