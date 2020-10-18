@@ -23,12 +23,11 @@ class App extends Component {
   }
 
   postData = async () => {
-    console.log(this.state.data[this.state.data.length-1])
     await axios.post('http://localhost:8000/transaction', this.state.data[this.state.data.length-1])
   }
 
-  deleteFromDB = async() => {
-    
+  deleteFromDB = async(amount) => {
+    await axios.delete(`http://localhost:8000/transaction/${amount}`)
   }
 
   calculateBalance = () => {
@@ -39,17 +38,17 @@ class App extends Component {
     return sum
   }
 
-  deleteTransaction = amount => {
+  deleteTransaction = async(amount) => {
     let transactions = [...this.state.data]
     transactions = transactions.filter(t => t.amount !== amount)
     this.setState({ data: transactions })
+    await this.deleteFromDB(amount)
 }
 
   insertTransaction = async (transaction) => {
     let transactions = await [...this.state.data]
     transactions.push(transaction)
     this.setState({ data: transactions })
-    console.log(this.state.data)
     await this.postData()
   }
 
