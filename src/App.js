@@ -19,11 +19,13 @@ class App extends Component {
 
   getData = async () =>{
     let transactions = await axios.get("http://localhost:8000/transactions")
-    this.setState({ data: transactions.data })
+    this.setState({ data: transactions.data }, function(){
+      console.log(this.state)
+    })
   }
 
-  postData = async () => {
-    await axios.post('http://localhost:8000/transaction', this.state.data[this.state.data.length-1])
+  postData = async (transaction) => {
+    await axios.post('http://localhost:8000/transaction', transaction)
   }
 
   deleteFromDB = async(amount) => {
@@ -38,27 +40,40 @@ class App extends Component {
     return sum
   }
 
-  deleteTransaction = async(amount) => {
+  deleteTransaction = async(id) => {
     let transactions = [...this.state.data]
-    transactions = transactions.filter(t => t.amount !== amount)
+    transactions = transactions.filter(t => t._id !== id)
     this.setState({ data: transactions })
-    await this.deleteFromDB(amount)
+    await this.deleteFromDB(id)
 }
 
   insertTransaction = async (transaction) => {
+    debugger
     let transactions = [...this.state.data]
     transactions.push(transaction)
     this.setState({ data: transactions })
-    await this.postData()
+    await this.postData(transaction)
+  }
+
+  divStyle = {
+    marginRight: "auto",
+    marginLeft: "auto",
+    maxWidth: "960px",
+    paddingRight: "10px",
+    paddingLeft:  "10px",
   }
 
   render(){
     let balance = this.calculateBalance()
     return(
       <Router>
-        <div id="container">
-          <Transactions data={this.state.data} onClick={this.deleteTransaction} />
-          <Operations data={this.state.data} onClick={this.insertTransaction} />
+        <div id="container" style={this.divStyle}>
+        <div id="main-links">
+            <Link to="/" style={{padding:"10px"}}>Transaction</Link>
+            <Link to="/about">Operations</Link>
+          </div>
+          <Route path="/" exact render={() => <Transactions data={this.state.data} onClick={this.deleteTransaction} />} />
+          <Route path="/about" exact render={() => <Operations data={this.state.data} balance={balance} onClick={this.insertTransaction} />} />
       </div>
       </Router>
     )

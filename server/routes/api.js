@@ -12,12 +12,12 @@ router.get(`/transactions`, async (req, res) => {
 router.post(`/transaction`, async (req, res) => {
     let transaction = new Bank(req.body)
     await transaction.save()
-    res.send("done")
+    res.send("saved")
 })
 
-router.delete(`/transaction/:amount`, async (req, res) => {
-    const amount = req.params.amount
-    await Bank.findOneAndDelete({amount: amount})
+router.delete(`/transaction/:id`, async (req, res) => {
+    const _id = req.params.id
+    await Bank.findOneAndDelete({ _id })
     res.send("deleted")
 })
 
