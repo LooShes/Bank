@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
+import { Button } from '@material-ui/core';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 class Transaction extends Component {
-    buttonStyle = {
-        color: 'blue',
-      }
-
       divStyle = {
         padding: "5px",
         paddingBottom: "15px",
@@ -25,7 +23,7 @@ class Transaction extends Component {
                 <p style={this.pStyle}>Amount :{this.props.transaction.amount}</p>
                 <p style={this.pStyle}>Vendor: {this.props.transaction.vendor}</p>
                 <p style={this.pStyle}>Category: {this.props.transaction.category}</p>
-                <button id="delete-btn" onClick={this.deleteTransaction} style={this.buttonStyle}>Delete Transaction</button>
+                <Button aria-label="delete" onClick={this.deleteTransaction} variant="contained" color="secondary"startIcon={<DeleteIcon />}>Delete</Button>
             </div> 
             )
        }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Button from '@material-ui/core/Button';
 
 class Operations extends Component {
     constructor() {
@@ -13,11 +14,6 @@ class Operations extends Component {
         this.handleButtons = this.handleButtons.bind(this)
     }
 
-    buttonStyle = {
-        color: "blue",
-        height: "20px",
-    }
-
     inputStyle = {
         width: "200px",
         height: "25px",
@@ -26,6 +22,7 @@ class Operations extends Component {
     divStyle = {
         paddingBottom: "20px",
         fontSize: "25px",
+        color: "blue"
       }
 
     handleButtons = (evt) => {
@@ -47,13 +44,13 @@ class Operations extends Component {
     render() {
         return (
             <div id="operations" style={this.divStyle}>
-                <p>Current Balance: {this.props.balance}</p>
+                <p style={{color:"#00b906", fontWeight:"bold"}}>Current Balance: {this.props.balance}</p>
                 Operations: <br></br>
                 <input id="amount-input" type="text" value={this.state.amount} onChange={(event)=>this.handleChange(event, "amount")} placeholder="amount" style={this.inputStyle} />
                 <input id="vendor-input" type="text" value={this.state.vendor} onChange={(event)=>this.handleChange(event, "vendor")} placeholder="vendor" style={this.inputStyle} />
                 <input id="category-input" type="text" value={this.state.category} onChange={(event)=>this.handleChange(event, "category")} placeholder="category" style={this.inputStyle} /><br></br>
-                <button id="deposit-btn" value="deposit" onClick={this.handleButtons} style={this.buttonStyle}>Deposit</button>
-                <button id="withdraw-btn" value="withdraw" onClick={this.handleButtons} style={this.buttonStyle}>Withdraw</button>
+                <Button id="deposit-btn" variant="contained" color="primary" value="deposit" onClick={this.handleButtons}>Deposit</Button>
+                <Button id="withdraw-btn" variant="contained" color="secondary" value="withdraw" onClick={this.handleButtons} style={{margin:"10px"}}>Withdraw</Button>
             </div>
         )
     }

@@ -68,7 +68,7 @@ class App extends Component {
     return(
       <Router>
         <div id="container" style={this.divStyle}>
-        <div id="main-links">
+        <div id="main-links" style={{justifyContent:"center"}}>
             <Link to="/" style={{padding:"10px"}}>Transaction</Link>
             <Link to="/about">Operations</Link>
           </div>
