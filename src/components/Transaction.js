@@ -6,7 +6,7 @@ class Transaction extends Component {
       divStyle = {
         padding: "5px",
         paddingBottom: "15px",
-        fontSize: "25px",
+        fontSize: "19px",
       }
 
       pStyle = {
@@ -19,12 +19,12 @@ class Transaction extends Component {
 
     render() {
         return(
-            <div id="data-container" style={this.divStyle}>Transaction:
+            <h2 id="data-container" style={this.divStyle}>Transaction:
                 <p style={this.pStyle}>Amount :{this.props.transaction.amount}</p>
                 <p style={this.pStyle}>Vendor: {this.props.transaction.vendor}</p>
                 <p style={this.pStyle}>Category: {this.props.transaction.category}</p>
                 <Button aria-label="delete" onClick={this.deleteTransaction} variant="contained" color="secondary"startIcon={<DeleteIcon />}>Delete</Button>
-            </div> 
+            </h2> 
             )
        }
 }

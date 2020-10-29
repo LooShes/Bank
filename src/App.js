@@ -68,9 +68,9 @@ class App extends Component {
     return(
       <Router>
         <div id="container" style={this.divStyle}>
-        <div id="main-links" style={{justifyContent:"center"}}>
+        <div id="main-links" style={{display:"flex", justifyContent:"center"}}>
             <Link to="/" style={{padding:"10px"}}>Transaction</Link>
-            <Link to="/about">Operations</Link>
+            <Link to="/about" style={{padding:"10px"}}>Operations</Link>
           </div>
           <Route path="/" exact render={() => <Transactions data={this.state.data} onClick={this.deleteTransaction} />} />
           <Route path="/about" exact render={() => <Operations data={this.state.data} balance={balance} onClick={this.insertTransaction} />} />
